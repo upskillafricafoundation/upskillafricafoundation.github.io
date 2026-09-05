@@ -1,0 +1,49 @@
+name: Migrate UAF site
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout target site
+        uses: actions/checkout@v4
+
+      - name: Copy and repair unified frontend
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsSL https://raw.githubusercontent.com/upskillafricafoundation/project/main/frontend/index.html -o /tmp/uaf-index.html
+          python - <<'PY'
+          from pathlib import Path
+          src = Path('/tmp/uaf-index.html').read_text(encoding='utf-8')
+          marker = '\n</script>\n</body>'
+          if marker not in src:
+              raise SystemExit('Could not find the final outer script marker')
+          before, after = src.rsplit(marker, 1)
+          # Embedded module HTML contains </script>. Those sequences must not
+          # terminate the outer script element while the page is being parsed.
+          before = before.replace('</script>', '<\\/script>')
+          Path('index.html').write_text(before + marker + after, encoding='utf-8')
+          PY
+
+      - name: Copy frontend configuration
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/upskillafricafoundation/project/main/frontend/config.js -o config.js
+
+      - name: Commit migrated site
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html config.js
+          if git diff --cached --quiet; then
+            echo 'No migration changes needed.'
+          else
+            git commit -m 'Migrate and repair UAF unified site [skip ci]'
+            git push
+          fi
