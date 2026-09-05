@@ -28,6 +28,8 @@ jobs:
               raise SystemExit('Could not find the final outer script tag')
           before = src[:last].replace('</script>', '<\\/script>')
           repaired = before + src[last:]
+          # Keep the real external config script as a real HTML script tag.
+          repaired = repaired.replace('<script src="config.js"><\\/script>', '<script src="config.js"></script>')
           Path('index.html').write_text(repaired, encoding='utf-8')
           PY
 
