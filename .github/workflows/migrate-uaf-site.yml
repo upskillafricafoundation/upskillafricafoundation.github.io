@@ -22,14 +22,13 @@ jobs:
           python - <<'PY'
           from pathlib import Path
           src = Path('/tmp/uaf-index.html').read_text(encoding='utf-8')
-          marker = '\n</script>\n</body>'
-          if marker not in src:
-              raise SystemExit('Could not find the final outer script marker')
-          before, after = src.rsplit(marker, 1)
-          # Embedded module HTML contains </script>. Those sequences must not
-          # terminate the outer script element while the page is being parsed.
-          before = before.replace('</script>', '<\\/script>')
-          Path('index.html').write_text(before + marker + after, encoding='utf-8')
+          marker = '</script>'
+          last = src.rfind(marker)
+          if last < 0:
+              raise SystemExit('Could not find the final outer script tag')
+          before = src[:last].replace('</script>', '<\\/script>')
+          repaired = before + src[last:]
+          Path('index.html').write_text(repaired, encoding='utf-8')
           PY
 
       - name: Copy frontend configuration
