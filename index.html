@@ -6,7 +6,7 @@
 <title>UAF Digital M&E/L</title>
 <script src="config.js"></script>
 <style>
-:root{--blue:#123b8e;--red:#d72638;--bg:#f4f6f9;--ink:#172033;--muted:#687386}*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--ink)}header{background:linear-gradient(120deg,var(--blue),#1d4fae);color:#fff;padding:24px}header h1{margin:0;font-size:24px}header p{margin:6px 0 0;opacity:.9}main{max-width:1400px;margin:auto;padding:22px}.status{margin:0 0 16px;color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:15px}.card{background:#fff;border-radius:13px;padding:20px;box-shadow:0 2px 9px #0001}.label{font-size:13px;color:var(--muted)}.num{font-size:32px;font-weight:700;margin-top:8px}.modules{margin-top:20px}.modules h2{margin-bottom:12px}.module-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}.module{display:block;background:#fff;border-radius:12px;padding:17px;text-decoration:none;color:var(--ink);border-left:5px solid var(--blue);box-shadow:0 2px 8px #0001}.module:hover{transform:translateY(-1px)}.module b{display:block;color:var(--blue);margin-bottom:5px}.error{color:#a61b29;background:#fff1f2;border-left:4px solid var(--red);padding:12px;border-radius:6px}
+:root{--blue:#123b8e;--red:#d72638;--bg:#f4f6f9;--ink:#172033;--muted:#687386}*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--ink)}header{background:linear-gradient(120deg,var(--blue),#1d4fae);color:#fff;padding:24px}header h1{margin:0;font-size:24px}header p{margin:6px 0 0;opacity:.9}main{max-width:1400px;margin:auto;padding:22px}.status{margin:0 0 16px;color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:15px}.card{background:#fff;border-radius:13px;padding:20px;box-shadow:0 2px 9px #0001}.label{font-size:13px;color:var(--muted)}.num{font-size:32px;font-weight:700;margin-top:8px}.modules{margin-top:20px}.modules h2{margin-bottom:12px}.module-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}.module{display:block;background:#fff;border-radius:12px;padding:17px;text-decoration:none;color:var(--ink);border-left:5px solid var(--blue);box-shadow:0 2px 8px #0001;cursor:pointer}.module:hover{transform:translateY(-1px)}.module b{display:block;color:var(--blue);margin-bottom:5px}.error{color:#a61b29;background:#fff1f2;border-left:4px solid var(--red);padding:12px;border-radius:6px}.result{margin-top:20px;overflow:auto}.result h2{margin-top:0}.result table{width:100%;border-collapse:collapse;font-size:13px}.result th,.result td{padding:9px;border-bottom:1px solid #eee;text-align:left;vertical-align:top}.result th{background:#f7f8fa}.back{margin-top:15px;padding:10px 15px;border:0;border-radius:8px;background:var(--blue);color:#fff;cursor:pointer}
 </style>
 </head>
 <body>
@@ -23,32 +23,36 @@
 <section class="modules">
 <h2>M&E/L Modules</h2>
 <div class="module-grid">
-<a class="module" href="javascript:void(0)" onclick="loadCore()"><b>Core M&E/L</b>Projects, objectives, activities, indicators, beneficiaries and evidence.</a>
-<a class="module" href="javascript:void(0)" onclick="loadAPI('analytics')"><b>Analytics</b>Performance, retention, disaggregation and trends.</a>
-<a class="module" href="javascript:void(0)" onclick="loadAPI('stage7')"><b>Stage 7 — Strategic Intelligence</b>Portfolio, donor compliance, learning, risks and decisions.</a>
-<a class="module" href="javascript:void(0)" onclick="loadAPI('stage8')"><b>Stage 8 — Data Quality</b>Quality, verification, corrections and governance.</a>
-<a class="module" href="javascript:void(0)" onclick="loadAPI('stage9')"><b>Stage 9 — Advanced Analytics</b>Forecasts and early-warning decision signals.</a>
-<a class="module" href="javascript:void(0)" onclick="loadAPI('stage10')"><b>Stage 10 — Donor Reporting</b>Reporting periods, evidence and report management.</a>
-<a class="module" href="javascript:void(0)" onclick="loadAPI('stage11')"><b>Stage 11 — Finance & Budget M&E</b>Budgets, expenditures, self-expenses and variance.</a>
-<a class="module" href="javascript:void(0)" onclick="loadAPI('stage12')"><b>Stage 12 — Procurement & Assets</b>Procurement, assets, inventory and resources.</a>
-<a class="module" href="javascript:void(0)" onclick="loadAPI('stage13')"><b>Stage 13 — HR & Workplans</b>Staff, volunteers, attendance, training and deployments.</a>
-<a class="module" href="javascript:void(0)" onclick="loadAPI('stage14')"><b>Stage 14 — Communications & Advocacy</b>Stakeholders, campaigns, outreach and commitments.</a>
-<a class="module" href="javascript:void(0)" onclick="loadAPI('stage15')"><b>Stage 15 — Partnerships</b>Partners, MOUs, contributions, referrals and joint initiatives.</a>
-<a class="module" href="javascript:void(0)" onclick="loadAPI('stage16')"><b>Stage 16 — Knowledge & Learning</b>Lessons, adaptations, good practices and improvement.</a>
-<a class="module" href="javascript:void(0)" onclick="loadAPI('stage17')"><b>Stage 17 — Sustainability</b>Ownership, capacity, resources, resilience and exit.</a>
-<a class="module" href="javascript:void(0)" onclick="loadAPI('stage18')"><b>Stage 18 — Safeguarding</b>Child protection, PSEA, complaints and do-no-harm.</a>
-<a class="module" href="javascript:void(0)" onclick="loadAPI('stage19')"><b>Stage 19 — GEDI</b>Gender equality, equity, disability and social inclusion.</a>
+<a class="module" onclick="loadCore()"><b>Core M&E/L</b>Projects, objectives, activities, indicators, beneficiaries and evidence.</a>
+<a class="module" onclick="loadAPI('analytics')"><b>Analytics</b>Performance, retention, disaggregation and trends.</a>
+<a class="module" onclick="loadAPI('stage7')"><b>Stage 7 — Strategic Intelligence</b>Portfolio, donor compliance, learning, risks and decisions.</a>
+<a class="module" onclick="loadAPI('stage8')"><b>Stage 8 — Data Quality</b>Quality, verification, corrections and governance.</a>
+<a class="module" onclick="loadAPI('stage9')"><b>Stage 9 — Advanced Analytics</b>Forecasts and early-warning decision signals.</a>
+<a class="module" onclick="loadAPI('stage10')"><b>Stage 10 — Donor Reporting</b>Reporting periods, evidence and report management.</a>
+<a class="module" onclick="loadAPI('stage11')"><b>Stage 11 — Finance & Budget M&E</b>Budgets, expenditures, self-expenses and variance.</a>
+<a class="module" onclick="loadAPI('stage12')"><b>Stage 12 — Procurement & Assets</b>Procurement, assets, inventory and resources.</a>
+<a class="module" onclick="loadAPI('stage13')"><b>Stage 13 — HR & Workplans</b>Staff, volunteers, attendance, training and deployments.</a>
+<a class="module" onclick="loadAPI('stage14')"><b>Stage 14 — Communications & Advocacy</b>Stakeholders, campaigns, outreach and commitments.</a>
+<a class="module" onclick="loadAPI('stage15')"><b>Stage 15 — Partnerships</b>Partners, MOUs, contributions, referrals and joint initiatives.</a>
+<a class="module" onclick="loadAPI('stage16')"><b>Stage 16 — Knowledge & Learning</b>Lessons, adaptations, good practices and improvement.</a>
+<a class="module" onclick="loadAPI('stage17')"><b>Stage 17 — Sustainability</b>Ownership, capacity, resources, resilience and exit.</a>
+<a class="module" onclick="loadAPI('stage18')"><b>Stage 18 — Safeguarding</b>Child protection, PSEA, complaints and do-no-harm.</a>
+<a class="module" onclick="loadAPI('stage19')"><b>Stage 19 — GEDI</b>Gender equality, equity, disability and social inclusion.</a>
 </div>
 </section>
-<div id="result" class="card" style="margin-top:20px;display:none"></div>
+<div id="result" class="card result" style="display:none"></div>
 </main>
 <script>
 const API=typeof API_URL==='string'?API_URL:'';
 const $=id=>document.getElementById(id);
-async function api(action){if(!API)throw Error('Apps Script API URL is not configured.');const r=await fetch(API+'?action='+encodeURIComponent(action));if(!r.ok)throw Error('API request failed: '+r.status);return r.json()}
+const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+async function api(action){if(!API)throw Error('Apps Script API URL is not configured.');const r=await fetch(API+'?action='+encodeURIComponent(action),{method:'GET',mode:'cors',cache:'no-store'});if(!r.ok)throw Error('API request failed: HTTP '+r.status);const d=await r.json();if(d&&d.ok===false)throw Error(d.error||'API returned an error');return d}
+function value(v){if(v===null||v===undefined)return '';if(typeof v==='object')return JSON.stringify(v);return String(v)}
+function renderObject(obj){if(obj===null||obj===undefined)return '<p>No data returned.</p>';if(Array.isArray(obj))return renderRows(obj);if(typeof obj!=='object')return '<pre>'+esc(obj)+'</pre>';let html='<table><tbody>';for(const k of Object.keys(obj)){const v=obj[k];if(Array.isArray(v)){html+='<tr><th>'+esc(k)+'</th><td>'+renderRows(v)+'</td></tr>'}else if(v&&typeof v==='object'){html+='<tr><th>'+esc(k)+'</th><td>'+renderObject(v)+'</td></tr>'}else html+='<tr><th>'+esc(k)+'</th><td>'+esc(value(v))+'</td></tr>'}return html+'</tbody></table>'}
+function renderRows(rows){if(!rows||!rows.length)return '<p>No records.</p>';if(typeof rows[0]!=='object')return '<p>'+esc(rows.map(value).join(', '))+'</p>';const keys=[...new Set(rows.flatMap(r=>Object.keys(r||{})))];return '<table><thead><tr>'+keys.map(k=>'<th>'+esc(k)+'</th>').join('')+'</tr></thead><tbody>'+rows.slice(0,200).map(r=>'<tr>'+keys.map(k=>'<td>'+esc(value(r[k]))+'</td>').join('')+'</tr>').join('')+'</tbody></table>'}
 async function loadCore(){try{const d=await api('dashboard');$('projects').textContent=d.projects||0;$('beneficiaries').textContent=d.beneficiaries||0;$('indicators').textContent=d.indicators||0;$('completed').textContent=d.completed||0;$('alerts').textContent=d.alerts||0;$('status').textContent='Dashboard connected successfully to the UAF Apps Script API.';$('result').style.display='none'}catch(e){showError(e)}}
-async function loadAPI(action){try{const d=await api(action);$('result').style.display='block';$('result').innerHTML='<h2>'+action+'</h2><p>API endpoint is responding successfully.</p><p><b>Status:</b> OK</p><p>This module is connected to the UAF backend. Use the corresponding module interface from the project frontend when its dedicated page is migrated.</p>';$('status').textContent=action+' API connected successfully.'}catch(e){showError(e)}}
-function showError(e){$('status').innerHTML='<div class="error">API connection error: '+String(e.message||e)+'</div>'}
+async function loadAPI(action){$('status').textContent='Loading '+action+'…';$('result').style.display='block';$('result').innerHTML='<h2>Loading '+esc(action)+'</h2><p>Please wait…</p>';try{const d=await api(action);$('result').innerHTML='<h2>'+esc(action)+'</h2>'+renderObject(d);$('status').textContent=action+' loaded successfully.';$('result').scrollIntoView({behavior:'smooth',block:'start'})}catch(e){showError(e)}}
+function showError(e){$('status').innerHTML='<div class="error">API connection error: '+esc(e.message||e)+'</div>';$('result').style.display='block';$('result').innerHTML='<div class="error">'+esc(e.message||e)+'</div>'}
 loadCore();
 </script>
 </body>
